@@ -2,18 +2,14 @@ pipeline {
     agent any
 
     stages {
-        stage('Checkout') {
-            steps {
-                checkout scm
-            }
-        }
-
         stage('Build React App') {
             steps {
-                sh '''
-                  npm install
-                  npm run build
-                '''
+                dir('react-app') {
+                    sh '''
+                      npm install
+                      npm run build
+                    '''
+                }
             }
         }
 
@@ -25,7 +21,10 @@ pipeline {
 
         stage('Run Container') {
             steps {
-                sh 'docker run -d -p 80:80 react-app:latest'
+                sh '''
+                  docker rm -f react-container || true
+                  docker run -d -p 80:80 --name react-container react-app:latest
+                '''
             }
         }
     }
