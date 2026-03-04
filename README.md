@@ -1,4 +1,4 @@
-# Project 3 – CI/CD for React App using Jenkins + DockerHub
+# Project:E_Commerce – CI/CD for React App using Jenkins + DockerHub
 
 ## Overview
 This project demonstrates a complete DevOps workflow to build, push, deploy, and monitor a React application using:
